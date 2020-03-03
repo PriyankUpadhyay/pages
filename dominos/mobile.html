@@ -30,7 +30,7 @@
         window.ymConfig = {
             bot: botId || 'x1569558732722',
             pwa: true,
-            refreshContext: refreshContext,
+            enableHistory: true,
             handlers: {
                 sendIOSEvent: function (data) {
                     try {
@@ -72,7 +72,7 @@
 
                 function l() {
                     var e = d.createElement("script");
-                    e.type = "text/javascript", e.async = !0, e.src = "https://app.yellowmessenger.com/widget/mobile.js";
+                    e.type = "text/javascript", e.async = !0, e.src = "https://62ec045b.ngrok.io/mobile.js";
                     var t = d.getElementsByTagName("script")[0];
                     t.parentNode.insertBefore(e, t)
                 }
