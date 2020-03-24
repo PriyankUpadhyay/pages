@@ -23,6 +23,17 @@
       <script>
          document.addEventListener("DOMContentLoaded", function(){
 //              document.getElementById("se-pre-con").style.display = "none";
+             try{
+            payloadJSON = JSON.parse(payload);
+        }catch(e){
+           console.log(e);
+            try {
+                window.YMHandler.receiveMessage(JSON.stringify({ code: "Payload Format Error", data: e }));
+            } catch (e) { }
+            try {
+                window.webkit.messageHandlers.ymHandler.postMessage({ code: "Payload Format Error", data: e });
+            } catch (e) { }
+        }
          });
       </script>
 
@@ -54,12 +65,6 @@
             payloadJSON = JSON.parse(payload);
         }catch(e){
            console.log(e);
-            try {
-                window.YMHandler.receiveMessage(JSON.stringify({ code: "Payload Format Error", data: e }));
-            } catch (e) { }
-            try {
-                window.webkit.messageHandlers.ymHandler.postMessage({ code: "Payload Format Error", data: e });
-            } catch (e) { }
         }
         
 
