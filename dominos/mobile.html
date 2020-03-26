@@ -1,3 +1,31 @@
+<!-- <!doctype html>
+<html>
+<head>
+    <title>Chat bot</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+<button onclick="requestPermission()">Click here for permission</button>
+
+
+<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-messaging.js"></script>
+<script type="text/javascript">
+    window.ymConfig = {
+        bot: "x1549458515546",
+        autoOpen: false,
+        logging: true,
+        enableMapSelection: true,
+        serviceWorkerPath: './messaging-sw.js'
+    };
+    (function () {var w=window,ic=w.YellowMessenger;if("function"===typeof ic)ic("reattach_activator"),ic("update",ymConfig);else{var d=document,i=function(){i.c(arguments)};function l(){var e=d.createElement("script");e.type="text/javascript",e.async=!0,e.src="http://localhost:8080/main.js";var t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}i.q=[],i.c=function(e){i.q.push(e)},w.YellowMessenger=i,w.attachEvent?w.attachEvent("onload",l):w.addEventListener("load",l,!1)}})();
+</script>
+
+</body>
+</html> -->
+
 <!doctype html>
 <html>
 
@@ -23,17 +51,6 @@
       <script>
          document.addEventListener("DOMContentLoaded", function(){
 //              document.getElementById("se-pre-con").style.display = "none";
-             try{
-            payloadJSON = JSON.parse(payload);
-        }catch(e){
-           console.log(e);
-            try {
-                window.YMHandler.receiveMessage(JSON.stringify({ code: "Payload Format Error", data: e }));
-            } catch (e) { }
-            try {
-                window.webkit.messageHandlers.ymHandler.postMessage({ code: "Payload Format Error", data: e });
-            } catch (e) { }
-        }
          });
       </script>
 
@@ -64,7 +81,6 @@
         try{
             payloadJSON = JSON.parse(payload);
         }catch(e){
-           console.log(e);
         }
         
 
@@ -82,7 +98,9 @@
                     } catch (e) { }
                 }
             },
-            payload: payload
+            payload: payload,
+            triggerJourneyOnEnableHistory: payloadJSON.JourneySlug ? true: false ,
+            triggerJourney: payloadJSON.JourneySlug
         };
         
         if(payloadJSON.UserId) {
@@ -117,7 +135,7 @@
 
                 function l() {
                     var e = d.createElement("script");
-                    e.type = "text/javascript", e.async = !0, e.src = "https://app.yellowmessenger.com/widget/mobile.js";
+                    e.type = "text/javascript", e.async = !0, e.src = "http://d49c94c3.ngrok.io/mobile.js";
                     var t = d.getElementsByTagName("script")[0];
                     t.parentNode.insertBefore(e, t)
                 }
