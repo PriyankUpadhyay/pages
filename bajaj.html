@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        var config = {bot:"x1584958554090", pwa: true };
+        var sPageURL = window.location.search.substring(1);
+        var temp;
+        sPageURL.split("&").forEach(function (item) {
+            temp = item.split("=");
+            config[temp[0]] = temp[1] && temp[1];
+        })
+        window.ymConfig = config;
+        (function () {
+            var w = window, ic = w.YellowMessenger;
+            if ("function" === typeof ic)
+                ic("reattach_activator"), ic("update", ymConfig);
+            else {
+                var d = document, i = function () {
+                    i.c(arguments)
+                };
+                function l() {
+                    var e = d.createElement("script");
+                    e.type = "text/javascript", e.async = !0, e.src = "https://app.yellowmessenger.com/widget/mobile.js";
+                    var t = d.getElementsByTagName("script")[0];
+                    t.parentNode.insertBefore(e, t)
+                }
+                i.q = [], i.c = function (e) {
+                    i.q.push(e)
+                }, w.YellowMessenger = i, w.attachEvent ? w.attachEvent("onload", l) : w.addEventListener("load", l, !1)
+            }
+            let serviceWorkerUrl = 'https://www.bajajfinserv.in/service-worker.js'
+            if ('serviceWorker' in window.navigator) {
+                window.navigator.serviceWorker.register(serviceWorkerUrl)
+                    .then(function (reg) {
+                        console.log("Service worker registered.", reg);
+                    }).catch(function (err) {
+                    console.log("No it didn't. This happened:", err)
+                });
+            }
+        })();
+    });
+</script>
+</body>
+</html>
