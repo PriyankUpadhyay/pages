@@ -1,49 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
 <head>
-    <title>Domino’s</title>
-    <meta charset="utf-8">
-    <script src="/pwa/install"></script>
-    <link rel="manifest"
-        href="https://app.yellowmessenger.com/pwa/manifest.json?bot=x1562641985697&name=Domino’s&icon=https://cdn.yellowmessenger.com/p3e9Sq9GWqN51573069791655.png">
-    <link rel="icon" type="image/png" href="https://cdn.yellowmessenger.com/p3e9Sq9GWqN51573069791655.png" />
-    <meta name="viewport" content="width=device-width">
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 </head>
-
-
 <body>
-    <script type="text/javascript">
-        var getParams = function (url) {
-            var params = {};
-            var parser = document.createElement('a');
-            parser.href = url;
-            var query = parser.search.substring(1);
-            var vars = query.split('&');
-            for (var i = 0; i < vars.length; i++) {
-                var pair = vars[i].split('=');
-                params[pair[0]] = decodeURIComponent(pair[1]);
-            }
-            return params;
-        };
-        let payload = getParams(window.location.href)["payload"];
-        let botId = getParams(window.location.href)["botId"];
-        window.ymConfig = {
-            bot: botId,
-            pwa: true,
-            handlers: {
-                sendIOSEvent: function (data) {
-                    try {
-                        window.webkit.messageHandlers.ymHandler.postMessage(data);
-                    } catch (e) { }
-                    try {
-                        window.YMHandler.receiveMessage(JSON.stringify(data));
-                    } catch (e) { }
-                }
-            },
-            payload: payload
-        };
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        var config = {bot:"x1584958554090", pwa: true };
+        var sPageURL = window.location.search.substring(1);
+        var temp;
+        sPageURL.split("&").forEach(function (item) {
+            temp = item.split("=");
+            config[temp[0]] = temp[1] && temp[1];
+        })
+        window.ymConfig = config;
         (function () {
             var w = window, ic = w.YellowMessenger;
             if ("function" === typeof ic)
@@ -52,31 +24,27 @@
                 var d = document, i = function () {
                     i.c(arguments)
                 };
-
                 function l() {
                     var e = d.createElement("script");
                     e.type = "text/javascript", e.async = !0, e.src = "https://app.yellowmessenger.com/widget/mobile.js";
                     var t = d.getElementsByTagName("script")[0];
                     t.parentNode.insertBefore(e, t)
                 }
-
                 i.q = [], i.c = function (e) {
                     i.q.push(e)
                 }, w.YellowMessenger = i, w.attachEvent ? w.attachEvent("onload", l) : w.addEventListener("load", l, !1)
             }
+            let serviceWorkerUrl = 'https://www.bajajfinserv.in/service-worker.js'
             if ('serviceWorker' in window.navigator) {
-                window.navigator.serviceWorker.register('https://app.yellowmessenger.com/pwa/service-worker',
-                    {
-                        'scope': '/pwa/mobile/'+botId
-                    })
+                window.navigator.serviceWorker.register(serviceWorkerUrl)
                     .then(function (reg) {
                         console.log("Service worker registered.", reg);
                     }).catch(function (err) {
-                        console.log("No it didn't. This happened:", err)
-                    });
+                    console.log("No it didn't. This happened:", err)
+                });
             }
         })();
-    </script>
+    });
+</script>
 </body>
-
 </html>
