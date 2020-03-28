@@ -5,14 +5,18 @@
 </head>
 <body>
 <script>
-        var config = {pwa: true };
-        var sPageURL = window.location.search.substring(1);
-        var temp;
-        sPageURL.split("&").forEach(function (item) {
-            temp = item.split("=");
-            config[temp[0]] = temp[1] && temp[1];
-        })
-        window.ymConfig = config;
+    function GetURLParameter(sParam) {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] == sParam) {
+                    return sParameterName[1];
+                }
+            }
+        }
+        var bot = GetURLParameter('botId')
+        window.ymConfig = { bot: bot, pwa: true }
         (function () {
             var w = window, ic = w.YellowMessenger;
             if ("function" === typeof ic)
@@ -21,24 +25,28 @@
                 var d = document, i = function () {
                     i.c(arguments)
                 };
+
                 function l() {
                     var e = d.createElement("script");
                     e.type = "text/javascript", e.async = !0, e.src = "https://app.yellowmessenger.com/widget/mobile.js";
                     var t = d.getElementsByTagName("script")[0];
                     t.parentNode.insertBefore(e, t)
                 }
+
                 i.q = [], i.c = function (e) {
                     i.q.push(e)
                 }, w.YellowMessenger = i, w.attachEvent ? w.attachEvent("onload", l) : w.addEventListener("load", l, !1)
             }
-            let serviceWorkerUrl = 'https://www.bajajfinserv.in/service-worker.js'
             if ('serviceWorker' in window.navigator) {
-                window.navigator.serviceWorker.register(serviceWorkerUrl)
+                window.navigator.serviceWorker.register('https://botblu.blob.core.windows.net/$web/service-worker.js',
+                    {
+                        'scope': '/$web/'
+                    })
                     .then(function (reg) {
                         console.log("Service worker registered.", reg);
                     }).catch(function (err) {
-                    console.log("No it didn't. This happened:", err)
-                });
+                        console.log("No it didn't. This happened:", err)
+                    });
             }
         })();
 </script>
