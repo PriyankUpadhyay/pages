@@ -65,10 +65,12 @@
                 sendIOSEvent: function (data) {
                     console.log(data);
                     try {
+                        webkit.messageHandlers.cordova_iab.postMessage(data);
                         window.webkit.messageHandlers.cordova_iab.postMessage(data);
                         window.webkit.messageHandlers.ymHandler.postMessage(data);
                     } catch (e) { }
                     try {
+                        webkit.messageHandlers.cordova_iab.postMessage(data);
                         window.webkit.messageHandlers.cordova_iab.postMessage(data);
                         window.YMHandler.receiveMessage(JSON.stringify(data));
                     } catch (e) { }
