@@ -74,6 +74,9 @@
 //                         window.webkit.messageHandlers.cordova_iab.postMessage(data);
                         window.YMHandler.receiveMessage(JSON.stringify(data));
                     } catch (e) { }
+                    try{
+                        window.webkit.messageHandlers.cordova_iab.postMessage(data);
+                    } catch(e)
                 }
             },
             payload: payload,
