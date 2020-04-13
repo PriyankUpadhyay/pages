@@ -64,28 +64,15 @@
             handlers: {
                 sendIOSEvent: function (data) {
                     console.log(data);
-//                      window.open("https://yellowmessenger.com/");
                     try {
-//                         webkit.messageHandlers.cordova_iab.postMessage(data);
-//                         window.webkit.messageHandlers.cordova_iab.postMessage(data);
                         window.webkit.messageHandlers.ymHandler.postMessage(data);
                     } catch (e) { }
                     try {
-//                         webkit.messageHandlers.cordova_iab.postMessage(data);
-//                         window.webkit.messageHandlers.cordova_iab.postMessage(data);
                         window.YMHandler.receiveMessage(JSON.stringify(data));
-//                         window.open("https://yellowmessenger.com/");
                     } catch (e) { console.log(e); }
                     try{
                         window.webkit.messageHandlers.cordova_iab.postMessage(JSON.stringify(data));
-                    } catch(e) {console.log(e);}
-//                     try{
-//                         webkit.messageHandlers.cordova_iab.postMessage(JSON.stringify(data));
-//                     } catch(e) {console.log(e);}
-//                     try{
-//                         window.messageHandlers.cordova_iab.postMessage(JSON.stringify(data));
-//                     } catch(e) {console.log(e);}
-                    
+                    } catch(e) {console.log(e);}                    
                 }
             },
             payload: payload,
