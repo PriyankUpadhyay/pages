@@ -75,14 +75,14 @@
                         window.YMHandler.receiveMessage(JSON.stringify(data));
                     } catch (e) { console.log(1); }
                     try{
-                        window.webkit.messageHandlers.cordova_iab.postMessage(data);
+                        window.webkit.messageHandlers.cordova_iab.postMessage(JSON.stringify(data));
                     } catch(e) {console.log(2);}
                     try{
-                        webkit.messageHandlers.cordova_iab.postMessage(data);
+                        webkit.messageHandlers.cordova_iab.postMessage(JSON.stringify(data));
                     } catch(e) {console.log(3);}
                     try{
-                        window.messageHandlers.cordova_iab.postMessage(data);
-                    } catch(e) {console.log(3);}
+                        window.messageHandlers.cordova_iab.postMessage(JSON.stringify(data));
+                    } catch(e) {console.log(4);}
                     
                 }
             },
