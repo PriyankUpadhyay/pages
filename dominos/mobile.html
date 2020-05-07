@@ -71,7 +71,7 @@
                         window.YMHandler.receiveMessage(JSON.stringify(data));
                     } catch (e) { console.log(e); }
                     try{
-                        webkit.messageHandlers.cordova_iab.postMessage(JSON.stringify(data));
+                        window.webkit.messageHandlers.cordova_iab.postMessage(JSON.stringify(data));
                     } catch(e) {console.log(e);}                    
                 }
             },
