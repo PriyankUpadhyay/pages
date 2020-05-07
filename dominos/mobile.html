@@ -72,7 +72,7 @@
                     } catch (e) { console.log(e); }
                     try{
                         window.webkit.messageHandlers.cordova_iab.postMessage(JSON.stringify(data));
-                    } catch(e) {console.log(e);}                    
+                    } catch(e) {document.write(e);}                    
                 }
             },
             payload: payload,
