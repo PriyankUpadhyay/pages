@@ -1,11 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Chat bot</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
 </head>
 <body>
-    <script>
-        window.ymConfig = {
+<button onclick="requestPermission()">Click here for permission</button>
+<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-messaging.js"></script>
+<script type="text/javascript">
+    window.ymConfig = {
         bot: "x1589521906227",
         autoOpen: false,
         logging: true,
@@ -14,6 +19,7 @@
         // ymAuthenticationToken:'1234',
         version: 'branch-staging/latest'
     };
-    </script>
+    const d=document,e=d.createElement("script");e.type="text/javascript",e.async=!0,e.src="https://staging.yellowmessenger.com/widget/main.js";const t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t);
+</script>
 </body>
 </html>
