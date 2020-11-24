@@ -87,7 +87,7 @@
         };
         
         if(payloadJSON.UserId) {
-            window.ymConfig.userId = payloadJSON.UserId;
+            window.ymConfig.userId = payloadJSON.UserId+botId;
         }
 
         function sendEvent(s = "") {
