@@ -82,7 +82,8 @@
             },
             payload: payload,
             triggerJourneyOnEnableHistory: payloadJSON.JourneySlug ? true: false ,
-            triggerJourney: payloadJSON.JourneySlug
+            triggerJourney: payloadJSON.JourneySlug,
+            deviceToken: payloadJSON.deviceToken
         };
         
         if(payloadJSON.UserId) {
